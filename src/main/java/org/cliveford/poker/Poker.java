@@ -18,9 +18,9 @@ public class Poker
     Tie.
 
     hand rankings
-    high card
-    pair
-    two pairs
+    high card - 1
+    pair - 2
+    two pairs -
     three of a kind
     straight
     flush
