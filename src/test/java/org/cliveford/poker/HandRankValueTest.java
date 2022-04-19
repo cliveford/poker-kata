@@ -9,9 +9,9 @@ public class HandRankValueTest {
     @Test
     public void checkForHandRankValue()
     {
-        HandRankValue handRankValue = new HandRankValue("high");
+        HandRankValue handRankValue = new HandRankValue("high card");
         int expectedValue = 1;
-        int actualValue = handRankValue.getHandRankValue();
+        int actualValue = handRankValue.getRankValue();
         assertEquals(expectedValue, actualValue);
     }
 
