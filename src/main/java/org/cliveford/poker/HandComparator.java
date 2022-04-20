@@ -2,6 +2,8 @@ package org.cliveford.poker;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.HashMap;
+
 public class HandComparator {
 
     private String winningHand;
@@ -22,12 +24,13 @@ public class HandComparator {
         System.out.println("white hand - " + white);
         int blackHandStrength = Integer.parseInt(calculateHandStrength(black));
         int whiteHandStrength = Integer.parseInt(calculateHandStrength(white));
+        System.out.println("black hand strength = " + blackHandStrength);
+        System.out.println("white hand strength = " + whiteHandStrength);
         if (blackHandStrength > whiteHandStrength) {
             this.winningHand = String.valueOf(blackHandStrength);
         } else {
             this.winningHand = String.valueOf(whiteHandStrength);
         }
-
 
 
         return this.winningHand;
@@ -36,32 +39,87 @@ public class HandComparator {
     private String calculateHandStrength(String hand) {
         // check if we have 5 of any 1 suit
         int handValue = 0;
-        if(checkForFlush(hand)) {
-           handValue += getRankValue("flush");
+        if (checkForFlush(hand)) {
+            handValue += getRankValue("flush");
             System.out.println("should be value for flush" + handValue);
+        } else if (checkForQuads(hand)) {
+            handValue += getRankValue("four of a kind");
+            System.out.println("we have quads");
+
         } else {
             handValue = 1;
         }
-        int hearts = StringUtils.countMatches(hand, "H");
-        int clubs = StringUtils.countMatches(hand, "C");
-        int diamonds = StringUtils.countMatches(hand, "D");
-        int spades = StringUtils.countMatches(hand, "S");
-        int two = StringUtils.countMatches(hand, "2");
-        int three = StringUtils.countMatches(hand, "3");
-        int four = StringUtils.countMatches(hand, "4");
-        int five = StringUtils.countMatches(hand, "5");
-        int six = StringUtils.countMatches(hand, "6");
-        int seven = StringUtils.countMatches(hand, "7");
-        int eight = StringUtils.countMatches(hand, "8");
-        int nine = StringUtils.countMatches(hand, "9");
-        int ten = StringUtils.countMatches(hand, "T");
-        int jack = StringUtils.countMatches(hand, "J");
-        int queen = StringUtils.countMatches(hand, "Q");
-        int king = StringUtils.countMatches(hand, "K");
-        int ace = StringUtils.countMatches(hand, "A");
 
-        System.out.println("hearts - " + hearts);
-        return Integer.toString(handValue) ; //handStrength;
+
+        return Integer.toString(handValue); //handStrength;
+    }
+
+    private HashMap<String, Integer> countOccurences(String hand){
+        HashMap<String, Integer> map = new HashMap<>();
+        int two = StringUtils.countMatches(hand, "2");
+        if (two >= 2){
+            map.put("two", two);
+        }
+        int three = StringUtils.countMatches(hand, "3");
+        if (three >= 2){
+            map.put("three", three);
+        }
+        int four = StringUtils.countMatches(hand, "4");
+        if (four >= 2){
+            map.put("four", four);
+        }
+        int five = StringUtils.countMatches(hand, "5");
+        if (five >= 2){
+            map.put("five", five);
+        }
+        int six = StringUtils.countMatches(hand, "6");
+        if (six >= 2){
+            map.put("six", six);
+        }
+        int seven = StringUtils.countMatches(hand, "7");
+        if (seven >= 2){
+            map.put("seven", seven);
+        }
+        int eight = StringUtils.countMatches(hand, "8");
+        if (eight >= 2){
+            map.put("eight", eight);
+        }
+        int nine = StringUtils.countMatches(hand, "9");
+        if (nine >= 2){
+            map.put("nine", nine);
+        }
+        int ten = StringUtils.countMatches(hand, "T");
+        if (ten >= 2){
+            map.put("ten", ten);
+        }
+        int jack = StringUtils.countMatches(hand, "J");
+        if (jack >= 2){
+            map.put("jack", jack);
+        }
+        int queen = StringUtils.countMatches(hand, "Q");
+        if (queen >= 2){
+            map.put("queen", queen);
+        }
+        int king = StringUtils.countMatches(hand, "K");
+        if (king >= 2){
+            map.put("king", king);
+        }
+        int ace = StringUtils.countMatches(hand, "A");
+        if (ace >= 2){
+            map.put("ace", ace);
+        }
+        return map;
+    }
+
+    private boolean checkForQuads(String hand) {
+        HashMap<String, Integer> map = countOccurences(hand);
+        for (Integer cardValue : map.values()) {
+            if (cardValue > 3){
+                System.out.println("yay we have quads");
+                return true;
+            }
+        }
+        return false;
     }
 
     private int getRankValue(String rank) {
@@ -74,7 +132,7 @@ public class HandComparator {
         int clubs = StringUtils.countMatches(hand, "C");
         int diamonds = StringUtils.countMatches(hand, "D");
         int spades = StringUtils.countMatches(hand, "S");
-        if (hearts == 5 || clubs == 5 || diamonds == 5|| spades == 5) {
+        if (hearts == 5 || clubs == 5 || diamonds == 5 || spades == 5) {
             return true;
         }
         return false;
