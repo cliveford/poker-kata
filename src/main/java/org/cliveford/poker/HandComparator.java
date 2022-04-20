@@ -65,7 +65,8 @@ public class HandComparator {
             handValue += getRankValue("pair");
             System.out.println("we have pair");
         } else {
-            handValue += totalOfAllCardsInHand(hand);
+            handValue = 1;
+            //handValue += totalOfAllCardsInHand(hand);
             System.out.println("total of all cards");
         }
 
