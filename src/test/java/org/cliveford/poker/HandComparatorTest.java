@@ -78,4 +78,14 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatStraightFlushDetectionDetectsStraightFlush()
+    {
+        String input = "Black: 2H 3D 2S 4C 4H  White: JH TH 9H 8H QH";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 5;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 }
