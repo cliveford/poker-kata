@@ -46,8 +46,13 @@ public class HandComparator {
             handValue += getRankValue("four of a kind");
             System.out.println("we have quads");
         } else if (checkForTrips(hand)) {
-            handValue += getRankValue("three of a kind");
-            System.out.println("we have trips");
+            if (checkForPair(hand)) {
+                handValue += getRankValue("full house");
+                System.out.println("we have full house");
+            } else {
+                handValue += getRankValue("three of a kind");
+                System.out.println("we have trips");
+            }
         } else if (checkForTwoPair(hand)) {
             handValue += getRankValue("two pairs");
             System.out.println("we have two pair");

@@ -58,4 +58,14 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatFullHouseDetectionDetectsFullHouse()
+    {
+        String input = "Black: 2H 4D 2S 4C 4H  White: 2H 3C 7H 8H AH";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 7;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 }
