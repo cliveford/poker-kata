@@ -71,7 +71,7 @@ public class HandComparatorTest {
     @Test
     public void checkThatStraightDetectionDetectsStraight()
     {
-        String input = "Black: 2H 3D 2S 4C 4H  White: 2H 3C 4S 5H 6H";
+        String input = "Black: 2H 3D 2S 4C 4H  White: JH TC 9S 8H QH";
         HandComparator handComparator = new HandComparator(input);
         int expectedValue = 5;
         int actualValue = Integer.parseInt(handComparator.getWinningHand());
