@@ -114,7 +114,7 @@ public class HandComparator {
     private boolean checkForQuads(String hand) {
         HashMap<String, Integer> map = countOccurences(hand);
         for (Integer cardValue : map.values()) {
-            if (cardValue > 3){
+            if (cardValue == 4){
                 System.out.println("yay we have quads");
                 return true;
             }
