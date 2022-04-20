@@ -38,4 +38,14 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatPairDetectionDetectsPair()
+    {
+        String input = "Black: 2H 4D 2S 5C KD  White: 2H 3C 4H 8H AH";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 2;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 }
