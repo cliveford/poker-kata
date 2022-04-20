@@ -65,8 +65,8 @@ public class HandComparator {
             handValue += getRankValue("pair");
             System.out.println("we have pair");
         } else {
-            handValue = 1;
-            //handValue += totalOfAllCardsInHand(hand);
+            //handValue = 1;
+            handValue += totalOfAllCardsInHand(hand);
             System.out.println("total of all cards");
         }
 
@@ -231,7 +231,7 @@ public class HandComparator {
     private int totalOfAllCardsInHand(String hand) {
         int total = 0;
         TreeMap<Integer, Integer> map = countOccurences(hand);
-        for (Integer cardValue : map.values()) {
+        for (Integer cardValue : map.keySet()) {
             total += cardValue;
         }
         return total;
