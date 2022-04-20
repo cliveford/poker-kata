@@ -39,20 +39,18 @@ public class HandComparator {
     private String calculateHandStrength(String hand) {
         // check if we have 5 of any 1 suit
         int handValue = 0;
-        if (checkForFlush(hand)) {
-            handValue += getRankValue("flush");
-            System.out.println("we have flush");
-        } else if (checkForQuads(hand)) {
+        if (checkForQuads(hand)) {
             handValue += getRankValue("four of a kind");
             System.out.println("we have quads");
+        } else if (checkForFullHouse(hand)) {
+            handValue += getRankValue("full house");
+            System.out.println("we have full house");
+        } else if (checkForFlush(hand)) {
+            handValue += getRankValue("flush");
+            System.out.println("we have flush");
         } else if (checkForTrips(hand)) {
-            if (checkForPair(hand)) {
-                handValue += getRankValue("full house");
-                System.out.println("we have full house");
-            } else {
-                handValue += getRankValue("three of a kind");
-                System.out.println("we have trips");
-            }
+            handValue += getRankValue("three of a kind");
+            System.out.println("we have trips");
         } else if (checkForTwoPair(hand)) {
             handValue += getRankValue("two pairs");
             System.out.println("we have two pair");
@@ -124,6 +122,13 @@ public class HandComparator {
         return map;
     }
 
+
+    private boolean checkForFullHouse(String hand) {
+        if (checkForTrips(hand) && checkForPair(hand)) {
+            return true;
+        }
+        return false;
+    }
 
     private boolean checkForTwoPair(String hand) {
         HashMap<String, Integer> map = countOccurences(hand);
