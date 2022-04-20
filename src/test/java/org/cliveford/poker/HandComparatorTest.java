@@ -88,4 +88,14 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatHighCardDetectionDetectsHighCard()
+    {
+        String input = "Black: 2H 3D 6S 4C 8H  White: 3H TH 9C 8H QH";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 1;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 }
