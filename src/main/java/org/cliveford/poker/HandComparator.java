@@ -45,10 +45,12 @@ public class HandComparator {
         } else if (checkForQuads(hand)) {
             handValue += getRankValue("four of a kind");
             System.out.println("we have quads");
-
         } else if (checkForTrips(hand)) {
             handValue += getRankValue("three of a kind");
             System.out.println("we have trips");
+        } else if (checkForPair(hand)) {
+            handValue += getRankValue("pair");
+            System.out.println("we have pair");
 
         } else {
             handValue = 1;
@@ -57,7 +59,6 @@ public class HandComparator {
 
         return Integer.toString(handValue); //handStrength;
     }
-
 
 
     private HashMap<String, Integer> countOccurences(String hand) {
@@ -115,6 +116,17 @@ public class HandComparator {
             map.put("ace", ace);
         }
         return map;
+    }
+
+    private boolean checkForPair(String hand) {
+        HashMap<String, Integer> map = countOccurences(hand);
+        for (Integer cardValue : map.values()) {
+            if (cardValue == 2) {
+                System.out.println("yay we have pair");
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkForTrips(String hand) {
