@@ -16,4 +16,14 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatQuadDetectionDetectsQuads()
+    {
+        String input = "Black: 2H 2D 2S 2C KD  White: 2H 3H 4H 8H AH";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 8;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 }
