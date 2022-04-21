@@ -71,7 +71,7 @@ public class HandComparator {
             handValue += getRankValue("two pairs") + highCard;
             System.out.println("we have two pair");
         } else if (checkForPair(hand)) {
-            handValue += getRankValue("pair");
+            handValue += getRankValue("pair") + highCard;
             System.out.println("we have pair");
         } else if (checkForStraight(hand)) {
             handValue += getRankValue("straight") + highCard;
@@ -178,10 +178,21 @@ public class HandComparator {
         return total;
     }
 
-    private boolean checkForPair(String hand) {
+    private boolean checkForPair2(String hand) {
         TreeMap<Integer, Integer> map = countOccurences(hand);
         for (Integer cardValue : map.values()) {
             if (cardValue == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForPair(String hand) {
+        TreeMap<Integer, Integer> map = countOccurences(hand);
+        for (Map.Entry<Integer, Integer> card : map.entrySet()) {
+            if (card.getValue() == 2) {
+                highCard = card.getKey();
                 return true;
             }
         }
