@@ -112,11 +112,21 @@ public class HandComparatorTest {
     }
 
     @Test
-    public void checkThatCorrectPlayerWinsWhenBothHaveStraights()
+    public void checkThatWhiteHandWinsWhenBothHaveStraights()
     {
         String input = "Black: 2H 3D 4S 5C 6H  White: 3H 4H 5D 6S 7C";
         HandComparator handComparator = new HandComparator(input);
         int expectedValue = 12;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatBlackHandWinsWhenBothHaveStraights()
+    {
+        String input = "Black: 8H 9D TS JC QH  White: 3H 4H 5D 6S 7C";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 17;
         int actualValue = Integer.parseInt(handComparator.getWinningHand());
         assertEquals(expectedValue, actualValue);
     }

@@ -66,7 +66,7 @@ public class HandComparator {
             handValue += getRankValue("flush");
             System.out.println("we have flush");
         } else if (checkForStraight(hand)) {
-            handValue += getRankValue("straight");
+            handValue += getRankValue("straight") + highCard;
             System.out.println("we have flush");
         } else if (checkForTrips(hand)) {
             handValue += getRankValue("three of a kind");
