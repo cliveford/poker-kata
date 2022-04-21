@@ -63,11 +63,11 @@ public class HandComparator {
             handValue += getRankValue("full house");
             System.out.println("we have full house");
         } else if (checkForFlush(hand)) {
-            handValue += getRankValue("flush");
+            handValue += getRankValue("flush") + highCard;
             System.out.println("we have flush");
         } else if (checkForStraight(hand)) {
             handValue += getRankValue("straight") + highCard;
-            System.out.println("we have flush");
+            System.out.println("we have straight");
         } else if (checkForTrips(hand)) {
             handValue += getRankValue("three of a kind");
             System.out.println("we have trips");
@@ -147,62 +147,7 @@ public class HandComparator {
     }
 
 
-    private HashMap<String, Integer> countOccurences2(String hand) {
-        HashMap<String, Integer> map = new HashMap<>();
-        int two = StringUtils.countMatches(hand, "2");
-        if (two > 0) {
-            map.put("two", two);
-        }
-        int three = StringUtils.countMatches(hand, "3");
-        if (three > 0) {
-            map.put("three", three);
-        }
-        int four = StringUtils.countMatches(hand, "4");
-        if (four > 0) {
-            map.put("four", four);
-        }
-        int five = StringUtils.countMatches(hand, "5");
-        if (five > 0) {
-            map.put("five", five);
-        }
-        int six = StringUtils.countMatches(hand, "6");
-        if (six > 0) {
-            map.put("six", six);
-        }
-        int seven = StringUtils.countMatches(hand, "7");
-        if (seven > 0) {
-            map.put("seven", seven);
-        }
-        int eight = StringUtils.countMatches(hand, "8");
-        if (eight > 0) {
-            map.put("eight", eight);
-        }
-        int nine = StringUtils.countMatches(hand, "9");
-        if (nine > 0) {
-            map.put("nine", nine);
-        }
-        int ten = StringUtils.countMatches(hand, "T");
-        if (ten > 0) {
-            map.put("ten", ten);
-        }
-        int jack = StringUtils.countMatches(hand, "J");
-        if (jack > 0) {
-            map.put("jack", jack);
-        }
-        int queen = StringUtils.countMatches(hand, "Q");
-        if (queen > 0) {
-            map.put("queen", queen);
-        }
-        int king = StringUtils.countMatches(hand, "K");
-        if (king > 0) {
-            map.put("king", king);
-        }
-        int ace = StringUtils.countMatches(hand, "A");
-        if (ace > 0) {
-            map.put("ace", ace);
-        }
-        return map;
-    }
+
 
 
     private boolean checkForStraight(String hand) {
@@ -292,11 +237,13 @@ public class HandComparator {
     }
 
     private boolean checkForFlush(String hand) {
+        TreeMap<Integer, Integer> map = countOccurences(hand);
         int hearts = StringUtils.countMatches(hand, "H");
         int clubs = StringUtils.countMatches(hand, "C");
         int diamonds = StringUtils.countMatches(hand, "D");
         int spades = StringUtils.countMatches(hand, "S");
         if (hearts == 5 || clubs == 5 || diamonds == 5 || spades == 5) {
+            highCard = map.lastKey();
             return true;
         }
         return false;

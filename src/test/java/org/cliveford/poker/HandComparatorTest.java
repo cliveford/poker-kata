@@ -141,4 +141,16 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatWhiteHandWinsWhenBothHaveFlushes()
+    {
+        String input = "Black: 8H 6H TH JH QH  White: 3S 4S 5S 6S AS";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 20;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
+
+
 }
