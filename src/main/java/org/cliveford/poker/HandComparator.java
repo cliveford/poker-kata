@@ -68,7 +68,7 @@ public class HandComparator {
             handValue += getRankValue("three of a kind") + highCard;
             System.out.println("we have trips");
         } else if (checkForTwoPair(hand)) {
-            handValue += getRankValue("two pairs");
+            handValue += getRankValue("two pairs") + highCard;
             System.out.println("we have two pair");
         } else if (checkForPair(hand)) {
             handValue += getRankValue("pair");
@@ -168,19 +168,6 @@ public class HandComparator {
         return false;
     }
 
-    private boolean checkForTwoPair(String hand) {
-        TreeMap<Integer, Integer> map = countOccurences(hand);
-        int pairCounter = 0;
-        for (Integer cardValue : map.values()) {
-            if (cardValue == 2) {
-                pairCounter += 1;
-                if (pairCounter == 2) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
 
     private int totalOfAllCardsInHand(String hand) {
         int total = 0;
@@ -212,12 +199,31 @@ public class HandComparator {
         return false;
     }
 
-    private boolean checkForTrips2(String hand) {
+
+    private boolean checkForTwoPair(String hand) {
         TreeMap<Integer, Integer> map = countOccurences(hand);
-        System.out.println("map = " + map);
+        int pairCounter = 0;
+        for (Map.Entry<Integer, Integer> card : map.entrySet()) {
+            if (card.getValue() == 2) {
+                pairCounter += 1;
+                if (pairCounter == 2) {
+                    highCard = card.getKey();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForTwoPair2(String hand) {
+        TreeMap<Integer, Integer> map = countOccurences(hand);
+        int pairCounter = 0;
         for (Integer cardValue : map.values()) {
-            if (cardValue == 3) {
-                return true;
+            if (cardValue == 2) {
+                pairCounter += 1;
+                if (pairCounter == 2) {
+                    return true;
+                }
             }
         }
         return false;

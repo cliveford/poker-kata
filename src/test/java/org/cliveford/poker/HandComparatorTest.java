@@ -174,9 +174,19 @@ public class HandComparatorTest {
     @Test
     public void checkThatBlackHandWinsWhenBothHaveTwoPair()
     {
-        String input = "Black: KH KC JS JD QH  White: TS TC 6C 6S AS";
+        String input = "Black: KH QC JS JD QH  White: TS TC 6C 6S AS";
         HandComparator handComparator = new HandComparator(input);
-        int expectedValue = 16;
+        int expectedValue = 15;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatWhiteHandWinsWhenBothHaveTwoPair()
+    {
+        String input = "Black: KH QC JS JD QH  White: AC TC 6C 6S AS";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 17;
         int actualValue = Integer.parseInt(handComparator.getWinningHand());
         assertEquals(expectedValue, actualValue);
     }
