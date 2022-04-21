@@ -156,7 +156,17 @@ public class HandComparatorTest {
     {
         String input = "Black: 8H 8C 8S JD QH  White: TS TC TC 6S AS";
         HandComparator handComparator = new HandComparator(input);
-        int expectedValue = 18;
+        int expectedValue = 14;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatBlackHandWinsWhenBothHaveTrips()
+    {
+        String input = "Black: KH KC KS JD QH  White: TS TC TC 6S AS";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 17;
         int actualValue = Integer.parseInt(handComparator.getWinningHand());
         assertEquals(expectedValue, actualValue);
     }

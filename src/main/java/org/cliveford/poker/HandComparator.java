@@ -2,7 +2,7 @@ package org.cliveford.poker;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.TreeMap;
 
 public class HandComparator {
@@ -20,7 +20,6 @@ public class HandComparator {
     private int blackThirdKicker;
     private int whiteFourthKicker;
     private int blackFourthKicker;
-
 
 
     public HandComparator(String inputHands) {
@@ -65,11 +64,8 @@ public class HandComparator {
         } else if (checkForFlush(hand)) {
             handValue += getRankValue("flush") + highCard;
             System.out.println("we have flush");
-        } else if (checkForStraight(hand)) {
-            handValue += getRankValue("straight") + highCard;
-            System.out.println("we have straight");
         } else if (checkForTrips(hand)) {
-            handValue += getRankValue("three of a kind");
+            handValue += getRankValue("three of a kind") + highCard;
             System.out.println("we have trips");
         } else if (checkForTwoPair(hand)) {
             handValue += getRankValue("two pairs");
@@ -77,6 +73,9 @@ public class HandComparator {
         } else if (checkForPair(hand)) {
             handValue += getRankValue("pair");
             System.out.println("we have pair");
+        } else if (checkForStraight(hand)) {
+            handValue += getRankValue("straight") + highCard;
+            System.out.println("we have straight");
         } else {
             //handValue = 1;
             handValue += totalOfAllCardsInHand(hand);
@@ -86,7 +85,6 @@ public class HandComparator {
 
         return Integer.toString(handValue); //handStrength;
     }
-
 
 
     private TreeMap<Integer, Integer> countOccurences(String hand) {
@@ -147,9 +145,6 @@ public class HandComparator {
     }
 
 
-
-
-
     private boolean checkForStraight(String hand) {
         TreeMap<Integer, Integer> map = countOccurences(hand);
         if (map.lastKey() - map.firstKey() == 4) {
@@ -208,6 +203,18 @@ public class HandComparator {
 
     private boolean checkForTrips(String hand) {
         TreeMap<Integer, Integer> map = countOccurences(hand);
+        for (Map.Entry<Integer, Integer> card : map.entrySet()) {
+            if (card.getValue() == 3) {
+                highCard = card.getKey();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkForTrips2(String hand) {
+        TreeMap<Integer, Integer> map = countOccurences(hand);
+        System.out.println("map = " + map);
         for (Integer cardValue : map.values()) {
             if (cardValue == 3) {
                 return true;
