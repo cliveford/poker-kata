@@ -3,6 +3,7 @@ package org.cliveford.poker;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class HandComparator {
@@ -41,12 +42,13 @@ public class HandComparator {
         System.out.println("white hand strength = " + whiteHandStrength);
         if (blackHandStrength > whiteHandStrength) {
             this.winningHand = String.valueOf(blackHandStrength);
-        } else if (whiteHandStrength > blackHandStrength){
+        } else if (whiteHandStrength > blackHandStrength) {
             this.winningHand = String.valueOf(whiteHandStrength);
         } else {
             // tie
-            String winner = compareKickers(black, white);
-            System.out.println("The winner is : " + winner);
+            //String winner = compareKickers(black, white);
+            //System.out.println("The winner is : " + winner);
+            this.winningHand = compareKickers(black, white);
         }
 
 
@@ -54,41 +56,33 @@ public class HandComparator {
     }
 
     private String compareKickers(String black, String white) {
-        int whiteKicker = 0;
-        int blackKicker = 0;
+        int whiteKicker;
+        int blackKicker;
+        String winner;
         TreeMap<Integer, Integer> blackMap = countOccurences(black);
+
         System.out.println("mappety mapface black = " + blackMap);
         TreeMap<Integer, Integer> whiteMap = countOccurences(white);
         System.out.println("mappety mapface white = " + whiteMap);
-        for (Map.Entry<Integer, Integer> card : blackMap.entrySet()){
-            if (card.getValue() == 1) {
-                blackKicker = card.getKey();
+        System.out.println("last key black = " + blackMap.lastKey());
+
+         while (blackMap.size() > 0){
+
+            System.out.println("black map size - " + blackMap.size());
+            blackKicker = blackMap.lastKey();
+            System.out.println("black kicker - " + blackKicker);
+            whiteKicker = whiteMap.lastKey();
+            System.out.println("white kicker - " + whiteKicker);
+            blackMap.remove(blackKicker);
+            whiteMap.remove(whiteKicker);
+            if (blackKicker > whiteKicker) {
+                return "black";
+            } else if (whiteKicker > blackKicker) {
+                return "white";
             }
+//
         }
-        for (Map.Entry<Integer, Integer> card : whiteMap.entrySet()){
-            if (card.getValue() == 1) {
-                whiteKicker = card.getKey();
-            }
-        }
-        if (blackKicker > whiteKicker) {
-            return "black";
-        }
-
-        return "white";
-
-//        private boolean checkForPair(String hand) {
-//            TreeMap<Integer, Integer> map = countOccurences(hand);
-//            for (Map.Entry<Integer, Integer> card : map.entrySet()) {
-//                if (card.getValue() == 2) {
-//                    highCard = card.getKey();
-//                    return true;
-//                }
-//            }
-//            return false;
-//        }
-
-
-
+        return "draw";
     }
 
     private String calculateHandStrength(String hand) {

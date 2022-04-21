@@ -216,8 +216,28 @@ public class HandComparatorTest {
     {
         String input = "Black: QH QC JS JD 4S  White: QS QD JC JH AS";
         HandComparator handComparator = new HandComparator(input);
-        int expectedValue = 17;
-        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        String expectedValue = "white";
+        String actualValue = handComparator.getWinningHand();
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatHighestKickerWinsWhenBothPlayersHaveSamePair()
+    {
+        String input = "Black: QH QC JS TD AC  White: QS QD 2C 5H AS";
+        HandComparator handComparator = new HandComparator(input);
+        String expectedValue = "black";
+        String actualValue = handComparator.getWinningHand();
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatCorrectHandWinsWhenNeitherPlayerHasMadeHand()
+    {
+        String input = "Black: QH 2C JS TD AC  White: QS 3D 2C 5H AS";
+        HandComparator handComparator = new HandComparator(input);
+        String expectedValue = "black";
+        String actualValue = handComparator.getWinningHand();
         assertEquals(expectedValue, actualValue);
     }
 
