@@ -234,9 +234,9 @@ public class HandComparatorTest {
     @Test
     public void checkThatCorrectHandWinsWhenNeitherPlayerHasMadeHand()
     {
-        String input = "Black: QH 2C JS TD AC  White: QS 3D 2C 5H AS";
+        String input = "Black: 8H 2C 9S KD AC  White: 8S 3D 9C KH AS";
         HandComparator handComparator = new HandComparator(input);
-        String expectedValue = "black";
+        String expectedValue = "white";
         String actualValue = handComparator.getWinningHand();
         assertEquals(expectedValue, actualValue);
     }

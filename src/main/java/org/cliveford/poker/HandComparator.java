@@ -113,9 +113,9 @@ public class HandComparator {
             handValue += getRankValue("straight") + highCard;
             System.out.println("we have straight");
         } else {
-            //handValue = 1;
-            handValue += totalOfAllCardsInHand(hand);
-            System.out.println("total of all cards");
+            handValue = 1;
+            //handValue += totalOfAllCardsInHand(hand);
+            //System.out.println("total of all cards");
         }
 
 
