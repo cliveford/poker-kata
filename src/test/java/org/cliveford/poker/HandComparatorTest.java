@@ -191,6 +191,16 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatWhiteHandWinsWhenBothHaveOnePair()
+    {
+        String input = "Black: KH QC 8S JD QH  White: AC TC 7C 6S AS";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 16;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 
 
 }
