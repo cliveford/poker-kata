@@ -241,6 +241,26 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatCorrectHandWinsBothPlayersHaveAnAceHighFlush()
+    {
+        String input = "Black: AH QH TH 5H 3H  White: AS QS TS 6S 2S";
+        HandComparator handComparator = new HandComparator(input);
+        String expectedValue = "white";
+        String actualValue = handComparator.getWinningHand();
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatTieIsReturnedWhenHandsAreEqual()
+    {
+        String input = "Black: AH QS TH 6H 3H  White: AS QH TS 6S 3S";
+        HandComparator handComparator = new HandComparator(input);
+        String expectedValue = "Tie.";
+        String actualValue = handComparator.getWinningHand();
+        assertEquals(expectedValue, actualValue);
+    }
+
 
 
 }
