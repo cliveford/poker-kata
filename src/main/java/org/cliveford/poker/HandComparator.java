@@ -9,6 +9,19 @@ public class HandComparator {
 
     private String winningHand;
     private String inputHands;
+    private int highCard;
+    private int whiteHighCard;
+    private int blackHighCard;
+    private int whiteFirstKicker;
+    private int blackFirstKicker;
+    private int whiteSecondKicker;
+    private int blackSecondKicker;
+    private int whiteThirdKicker;
+    private int blackThirdKicker;
+    private int whiteFourthKicker;
+    private int blackFourthKicker;
+
+
 
     public HandComparator(String inputHands) {
 
@@ -195,6 +208,7 @@ public class HandComparator {
     private boolean checkForStraight(String hand) {
         TreeMap<Integer, Integer> map = countOccurences(hand);
         if (map.lastKey() - map.firstKey() == 4) {
+            highCard = map.lastKey();
             return true;
         }
         return false;

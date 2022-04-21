@@ -100,12 +100,23 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Disabled
     @Test
     public void checkThatNoMadeHandReturnsTotalOfAllCardsInHand()
     {
         String input = "Black: 2H 3D 6S 4C 8H  White: 7H TH 9C 8H 2C";
         HandComparator handComparator = new HandComparator(input);
         int expectedValue = 36;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkThatCorrectPlayerWinsWhenBothHaveStraights()
+    {
+        String input = "Black: 2H 3D 4S 5C 6H  White: 3H 4H 5D 6S 7C";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 12;
         int actualValue = Integer.parseInt(handComparator.getWinningHand());
         assertEquals(expectedValue, actualValue);
     }
