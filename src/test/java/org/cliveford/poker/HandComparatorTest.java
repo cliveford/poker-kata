@@ -211,6 +211,16 @@ public class HandComparatorTest {
         assertEquals(expectedValue, actualValue);
     }
 
+    @Test
+    public void checkThatHighestKickerWinsWhenBothPlayersHaveSameTwoPair()
+    {
+        String input = "Black: QH QC JS JD 4S  White: QS QD JC JH AS";
+        HandComparator handComparator = new HandComparator(input);
+        int expectedValue = 17;
+        int actualValue = Integer.parseInt(handComparator.getWinningHand());
+        assertEquals(expectedValue, actualValue);
+    }
+
 
 
 }
