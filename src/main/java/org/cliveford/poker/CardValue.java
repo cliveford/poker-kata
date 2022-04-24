@@ -4,27 +4,27 @@ import java.util.HashMap;
 
 public class CardValue {
 
-    private final int CARDVALUE;
+    private final String CARDVALUE;
 
-    public CardValue(String card) {
-        HashMap<String, Integer> CARDVALUES = new HashMap<>();
-        CARDVALUES.put("A", 14);
-        CARDVALUES.put("K", 13);
-        CARDVALUES.put("Q", 12);
-        CARDVALUES.put("J", 11);
-        CARDVALUES.put("T", 10);
-        CARDVALUES.put("9", 9);
-        CARDVALUES.put("8", 8);
-        CARDVALUES.put("7", 7);
-        CARDVALUES.put("6", 6);
-        CARDVALUES.put("5", 5);
-        CARDVALUES.put("4", 4);
-        CARDVALUES.put("3", 3);
-        CARDVALUES.put("2", 2);
+    public CardValue(int card) {
+        HashMap<Integer, String> CARDVALUES = new HashMap<>();
+        CARDVALUES.put(14, "Ace");
+        CARDVALUES.put(13, "King");
+        CARDVALUES.put(12, "Queen");
+        CARDVALUES.put(11, "Jack");
+        CARDVALUES.put(10, "Ten");
+        CARDVALUES.put(9, "Nine");
+        CARDVALUES.put(8, "Eight");
+        CARDVALUES.put(7, "Seven");
+        CARDVALUES.put(6, "Six");
+        CARDVALUES.put(5, "Five");
+        CARDVALUES.put(4, "Four");
+        CARDVALUES.put(3, "Three");
+        CARDVALUES.put(2, "Two");
         this.CARDVALUE = CARDVALUES.get(card);
     }
 
-    public int getCardValue() {
+    public String getCardValue() {
         return this.CARDVALUE ;
     }
 }

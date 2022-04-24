@@ -9,9 +9,9 @@ public class CardValueTest {
     @Test
     public void checkForCardValue()
     {
-        CardValue cardValue = new CardValue("K");
-        int expectedValue = 13;
-        int actualValue = cardValue.getCardValue();
+        CardValue cardValue = new CardValue(13);
+        String expectedValue = "King";
+        String actualValue = cardValue.getCardValue();
         assertEquals(expectedValue, actualValue);
     }
 
